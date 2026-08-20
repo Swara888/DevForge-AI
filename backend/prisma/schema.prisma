@@ -1,0 +1,240 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum RepositoryStatus {
+  PENDING
+  PROCESSING
+  READY
+  FAILED
+}
+
+enum CodeReviewSeverity {
+  INFO
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ReviewStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum DocumentationType {
+  README
+  MODULE
+  FUNCTION
+  API
+  ARCHITECTURE
+}
+
+enum GeneratedTestStatus {
+  GENERATED
+  REVIEWED
+  APPROVED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  githubAccount GitHubAccount?
+
+  repositories   Repository[]
+  chatSessions   ChatSession[]
+  codeReviews    CodeReview[]
+  documentations Documentation[]
+  generatedTests GeneratedTest[]
+
+  @@index([email])
+}
+
+model GitHubAccount {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  githubUserId String   @unique
+  username     String
+  accessToken  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([githubUserId])
+}
+
+model Repository {
+  id           String           @id @default(uuid())
+  userId       String
+  githubRepoId String?
+  name         String
+  owner        String
+  url          String
+  description  String?
+  size         Int?
+  status       RepositoryStatus @default(PENDING)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  files          RepositoryFile[]
+  codeChunks     CodeChunk[]
+  chatSessions   ChatSession[]
+  codeReviews    CodeReview[]
+  documentations Documentation[]
+  generatedTests GeneratedTest[]
+
+  @@unique([userId, url])
+  @@index([userId])
+  @@index([status])
+  @@index([githubRepoId])
+}
+
+model RepositoryFile {
+  id           String   @id @default(uuid())
+  repositoryId String
+  path         String
+  language     String?
+  size         Int?
+  contentHash  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  repository Repository  @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  codeChunks CodeChunk[]
+
+  @@unique([repositoryId, path])
+  @@index([repositoryId])
+}
+
+model ChatSession {
+  id           String   @id @default(uuid())
+  userId       String
+  repositoryId String
+  title        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  repository Repository    @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  messages   ChatMessage[]
+
+  @@index([userId])
+  @@index([repositoryId])
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  sessionId String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+
+  session ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, createdAt])
+}
+
+model CodeChunk {
+  id           String                       @id @default(uuid())
+  repositoryId String
+  fileId       String
+  content      String
+  startLine    Int?
+  endLine      Int?
+  chunkIndex   Int
+  embedding    Unsupported("vector(384)")?
+  createdAt    DateTime                     @default(now())
+  updatedAt    DateTime                     @updatedAt
+
+  file       RepositoryFile @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  repository Repository     @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@unique([fileId, chunkIndex])
+  @@index([repositoryId])
+  @@index([fileId])
+}
+
+model CodeReview {
+  id           String       @id @default(uuid())
+  userId       String
+  repositoryId String
+  status       ReviewStatus @default(PENDING)
+  summary      String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  findings CodeReviewFinding[]
+
+  @@index([userId])
+  @@index([repositoryId])
+  @@index([status])
+}
+
+model CodeReviewFinding {
+  id          String             @id @default(uuid())
+  reviewId    String
+  filePath    String?
+  severity    CodeReviewSeverity
+  title       String
+  explanation String
+  suggestion  String?
+  createdAt   DateTime           @default(now())
+
+  review CodeReview @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+
+  @@index([reviewId])
+  @@index([severity])
+}
+
+model Documentation {
+  id           String            @id @default(uuid())
+  userId       String
+  repositoryId String
+  type         DocumentationType
+  title        String
+  content      String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([repositoryId])
+  @@index([type])
+}
+
+model GeneratedTest {
+  id           String              @id @default(uuid())
+  userId       String
+  repositoryId String
+  filePath     String?
+  testCode     String
+  status       GeneratedTestStatus @default(GENERATED)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([repositoryId])
+  @@index([status])
+}

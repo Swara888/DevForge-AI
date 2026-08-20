@@ -34,3 +34,14 @@ coverage/
 # Prisma
 *.db
 *.db-journal
+
+# Docker
+*.tar
+
+# Local AI/editor tooling
+.agents/
+.claude/
+.windsurf/
+
+# Local generated/runtime files
+*.tmp
