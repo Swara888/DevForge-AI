@@ -7,7 +7,7 @@ import { buildCodeContext } from "../src/services/rag/context-builder.service.js
 const main = async (): Promise<void> => {
   const repository = await prisma.repository.findUnique({
     where: {
-      id: "b48ff5f5-7c6c-4994-b9d7-dfeab40fbdc6",
+      id: "8d9f1210-a142-46ce-86f1-1f67036a6ba9",
     },
     select: {
       id: true,

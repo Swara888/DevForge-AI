@@ -5,9 +5,6 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ArrowLeft, GitBranch, Loader2 } from "lucide-react";
 
-import GeneratedTestPanel from "@/components/testing/generated-test-panel";
-import CodeReviewPanel from "@/components/review/code-review-panel";
-import RepositoryDocumentation from "@/components/documentation/repository-documentation";
 import RepositoryFileExplorer from "@/components/repository/repository-file-explorer";
 
 import {
@@ -254,21 +251,6 @@ export default function RepositoryDetail() {
         <RepositoryFileExplorer
           repositoryId={repository.id}
           token={token}
-        />
-
-
-        <CodeReviewPanel
-          repositoryId={repository.id}
-          token={token}
-        />
-
-        <RepositoryDocumentation
-          repositoryId={repository.id}
-          token={token}
-        />
-
-        <GeneratedTestPanel
-          repositoryId={repository.id}
         />
       </div>
     </main>

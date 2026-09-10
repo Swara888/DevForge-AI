@@ -49,10 +49,6 @@ services:
 
   frontend:
     image: devforge-frontend
-    container_name: devforge-frontend
-    restart: unless-stopped
-    depends_on:
-      - backend
     ports:
       - "3000:3000"
 
