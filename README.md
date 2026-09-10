@@ -116,7 +116,7 @@ DevForge AI follows a modular monolith architecture.
 
 ## 🧠 RAG Pipeline
 
-
+```text
 GitHub Repository
        │
        ▼
@@ -145,7 +145,7 @@ LLM
        │
        ▼
 Repository-Aware Response
-
+```
 
 
 ## 🛠️ Tech Stack
@@ -228,14 +228,14 @@ Git
 GitHub OAuth application
 Gemini API key
 
-1. Clone the repository
+### 1. Clone the repository
 
 ```cmd
 git clone https://github.com/Swara888/DevForge-AI.git
 cd DevForge-AI
 ```
 
-2. Configure environment variables
+### 2. Configure environment variables
 
 Create the required environment files locally.
 
@@ -267,7 +267,7 @@ Frontend:
 NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
 ```
 
-3. Start the database and services
+### 3. Start the database and services
 ```cmd
 docker compose up -d
 ```
@@ -278,7 +278,7 @@ Check the containers:
 docker compose ps
 ```
 
-4. Start the application
+### 4. Start the application
 
 Backend:
 
