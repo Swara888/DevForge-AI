@@ -116,7 +116,7 @@ DevForge AI follows a modular monolith architecture.
 
 🧠 RAG Pipeline
 
-```cmd
+
 GitHub Repository
        │
        ▼
@@ -145,10 +145,10 @@ LLM
        │
        ▼
 Repository-Aware Response
-```
 
 
-🛠️ Tech Stack
+
+## 🛠️ Tech Stack
 ### Frontend
 Next.js
 React
@@ -184,7 +184,7 @@ GitHub Actions
 
 📁 Project Structure
 
-```cmd
+
 DevForge-AI/
 │
 ├── backend/
@@ -213,11 +213,11 @@ DevForge-AI/
 ├── docker-compose.yml
 ├── .gitignore
 └── README.md
-```
 
-⚙️ Local Setup
 
-## Prerequisites
+##⚙️ Local Setup
+
+### Prerequisites
 
 Make sure you have:
 
@@ -303,7 +303,7 @@ Frontend: http://localhost:3000
 Backend:  http://localhost:5000
 ```
 
-🔒 Security
+##🔒 Security
 
 DevForge AI uses basic security practices including:
 
@@ -325,7 +325,7 @@ JWT secrets
 Database passwords
 
 
-🧪 Example Workflow
+##🧪 Example Workflow
 
 A typical DevForge AI workflow:
 
@@ -343,7 +343,7 @@ A typical DevForge AI workflow:
         ↓
 7. Ask questions / Review / Generate Docs / Generate Tests
 
-📌 Current Status
+##📌 Current Status
 
 The core DevForge AI implementation is functional.
 
@@ -366,7 +366,7 @@ Docker-based development environment
 
 Current focus is on improving reliability, testing, security, and developer experience.
 
-🎯 Project Goals
+##🎯 Project Goals
 
 The goal of DevForge AI is to provide a single workspace where developers can:
 
@@ -377,7 +377,8 @@ Review code with repository context
 Generate technical documentation
 Generate test cases
 Explore large codebases more efficiently
-⚠️ Limitations
+
+##⚠️ Limitations
 
 AI-generated results may contain incorrect or incomplete information.
 
