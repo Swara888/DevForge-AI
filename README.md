@@ -112,9 +112,9 @@ DevForge AI follows a modular monolith architecture.
        └─────────────────┘         │ Retrieval        │
                                    │ Gemini / LLM      │
                                    └──────────────────┘
+```
 
-
-🧠 RAG Pipeline
+## 🧠 RAG Pipeline
 
 
 GitHub Repository
@@ -182,7 +182,7 @@ Docker
 Docker Compose
 GitHub Actions
 
-📁 Project Structure
+## 📁 Project Structure
 
 
 DevForge-AI/
@@ -215,7 +215,7 @@ DevForge-AI/
 └── README.md
 
 
-##⚙️ Local Setup
+## ⚙️ Local Setup
 
 ### Prerequisites
 
@@ -303,7 +303,7 @@ Frontend: http://localhost:3000
 Backend:  http://localhost:5000
 ```
 
-##🔒 Security
+## 🔒 Security
 
 DevForge AI uses basic security practices including:
 
@@ -325,7 +325,7 @@ JWT secrets
 Database passwords
 
 
-##🧪 Example Workflow
+## 🧪 Example Workflow
 
 A typical DevForge AI workflow:
 
@@ -343,7 +343,7 @@ A typical DevForge AI workflow:
         ↓
 7. Ask questions / Review / Generate Docs / Generate Tests
 
-##📌 Current Status
+## 📌 Current Status
 
 The core DevForge AI implementation is functional.
 
@@ -366,7 +366,7 @@ Docker-based development environment
 
 Current focus is on improving reliability, testing, security, and developer experience.
 
-##🎯 Project Goals
+## 🎯 Project Goals
 
 The goal of DevForge AI is to provide a single workspace where developers can:
 
@@ -378,7 +378,7 @@ Generate technical documentation
 Generate test cases
 Explore large codebases more efficiently
 
-##⚠️ Limitations
+## ⚠️ Limitations
 
 AI-generated results may contain incorrect or incomplete information.
 
@@ -386,7 +386,7 @@ DevForge AI therefore treats AI output as developer assistance rather than a rep
 
 Generated code, documentation, reviews, and tests should be reviewed by the developer before being relied upon or executed.
 
-👩‍💻 Author
+## 👩‍💻 Author
 
 Swarali Suryawanshi
 
