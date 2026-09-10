@@ -150,41 +150,41 @@ Repository-Aware Response
 
 ## 🛠️ Tech Stack
 ### Frontend
-Next.js
-React
-TypeScript
-Tailwind CSS
-Axios
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Axios
 
 ### Backend
-Node.js
-Express
-TypeScript
-Prisma ORM
-JWT Authentication
+- Node.js
+- Express
+- TypeScript
+- Prisma ORM
+- JWT Authentication
 
 ### Database
-PostgreSQL
-pgvector
+- PostgreSQL
+- pgvector
 
 ### AI
-Google Gemini
-Embeddings
-Retrieval-Augmented Generation (RAG)
-Semantic vector search
+- Google Gemini
+- Embeddings
+- Retrieval-Augmented Generation (RAG)
+- Semantic vector search
 
 ### Integrations
-GitHub OAuth
-GitHub API
+- GitHub OAuth
+- GitHub API
 
 ### DevOps
-Docker
-Docker Compose
-GitHub Actions
+- Docker
+- Docker Compose
+- GitHub Actions
 
 ## 📁 Project Structure
 
-
+```text
 DevForge-AI/
 │
 ├── backend/
@@ -213,7 +213,7 @@ DevForge-AI/
 ├── docker-compose.yml
 ├── .gitignore
 └── README.md
-
+```
 
 ## ⚙️ Local Setup
 
